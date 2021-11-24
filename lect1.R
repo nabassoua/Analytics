@@ -30,3 +30,28 @@ USDA$Sodium[match("CAVIAR", USDA$Description)]
 summary(USDA$Sodium)
 #Standard deviation, excluding NA obs.
 sd(USDA$Sodium,na.rm=TRUE)
+#Scatter plot
+plot(USDA$Protein, USDA$TotalFat,xlab="Protein",ylab="Fat",main="Protein vs Fat",col="red")
+#Histogram of Vitamin C
+hist(USDA$VitaminC, xlab="Vitamin C (mg)", main="Histogram of Vitamin C (mg)")
+#Histogram of Vitamin C with limit for x values
+hist(USDA$VitaminC, xlab="Vitamin C (mg)", main="Histogram of Vitamin C (mg)", xlim=c(0,100))
+#Breaks to 100 cells as opposed to 1 big cell
+hist(USDA$VitaminC, xlab="Vitamin C (mg)", main="Histogram of Vitamin C (mg)", xlim=c(0,100), breaks=100)
+#In the above we only see 5 cells and each cell is 20 mg long while we were expecting 100 cells.
+#In fact R did the right thing because originally the max was 2000 mg so 2000/100 = 20 mg which is correct.
+#So the break should have been 2000 as shown below
+hist(USDA$VitaminC, xlab="Vitamin C (mg)", main="Histogram of Vitamin C (mg)", xlim=c(0,100), breaks=2000)
+#Box plot for sugar
+boxplot(USDA$Sugar,main = "Box plot of sugar level", ylab="Sugar in g")
+# 1 if food has higher sodium than average and 0 otherwise 
+#HighSodium = USDA$Sodium > mean(USDA$Sodium, na.rm=TRUE)
+#str(HighSodium)
+# use as.numeric to change TRUE & FALSE to 1 & 0 respectively  
+#HighSodium = as.numeric(USDA$Sodium > mean(USDA$Sodium, na.rm=TRUE))
+#str(HighSodium)
+#Add the new variable to our data frame
+USDA$HighSodium = as.numeric(USDA$Sodium > mean(USDA$Sodium, na.rm=TRUE))
+str(USDA)
+#Add HighProtein
+USDA$HighProtein = as.numeric(USDA$Protein > mean(USDA$Protein, na.rm=TRUE)) 
