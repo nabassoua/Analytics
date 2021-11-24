@@ -48,10 +48,20 @@ boxplot(USDA$Sugar,main = "Box plot of sugar level", ylab="Sugar in g")
 #HighSodium = USDA$Sodium > mean(USDA$Sodium, na.rm=TRUE)
 #str(HighSodium)
 # use as.numeric to change TRUE & FALSE to 1 & 0 respectively  
-#HighSodium = as.numeric(USDA$Sodium > mean(USDA$Sodium, na.rm=TRUE))
-#str(HighSodium)
-#Add the new variable to our data frame
 USDA$HighSodium = as.numeric(USDA$Sodium > mean(USDA$Sodium, na.rm=TRUE))
-str(USDA)
-#Add HighProtein
-USDA$HighProtein = as.numeric(USDA$Protein > mean(USDA$Protein, na.rm=TRUE)) 
+#str(HighSodium)
+#Add  new variables to our data frame
+USDA$HighFat = as.numeric(USDA$TotalFat > mean(USDA$TotalFat, na.rm=TRUE))
+USDA$HighProtein = as.numeric(USDA$Protein > mean(USDA$Protein, na.rm=TRUE))
+USDA$HighCarbs = as.numeric(USDA$Carbohydrate > mean(USDA$Carbohydrate, na.rm=TRUE))
+#Food with high sodium i.e value is 1 in the HighSodium variable
+table(USDA$HighSodium)
+#Food with high sodium and high fat. Row in the output corresponds to high sodium
+table(USDA$HighSodium, USDA$HighFat)
+#Average amount of iron sorted by high and low protein
+#the cols heading 0 and 1 refer to protein level in the output.
+#For example food with low protein content have on average 2.55mg of iron
+tapply(USDA$Iron,USDA$HighProtein,mean,na.rm=TRUE)
+#Max level of vitamin C in food with low and high carb
+tapply(USDA$VitaminC,USDA$HighCarbs,max,na.rm=TRUE)
+tapply(USDA$VitaminC,USDA$HighCarbs,summary,na.rm=TRUE)

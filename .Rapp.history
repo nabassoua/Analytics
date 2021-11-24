@@ -1,25 +1,5 @@
-setwd("/Users/mohamednabassoua/Documents/Analytics/Analytics")
-USDA = read.csv("USDA.csv",stringsAsFactors=TRUE)
-plot(USDA$Protein, USDA$TotalFat)
-plot(USDA$Protein, USDA$TotalFat,xlab="Protein",ylab="Fat",main="Protein vs Fat",col="red")
-hist(USDA$VitaminC, xlab="Vitamin C (mg)", main="Histogram of Vitamin C (mg)")
-hist(USDA$VitaminC, xlab="Vitamin C (mg)", main="Histogram of Vitamin C (mg)", xlim=c(0,100))
-hist(USDA$VitaminC, xlab="Vitamin C (mg)", main="Histogram of Vitamin C (mg)", xlim=c(0,100), breaks=100)
-hist(USDA$VitaminC, xlab="Vitamin C (mg)", main="Histogram of Vitamin C (mg)", xlim=c(0,100), breaks=2000)
-boxplot(USDA$Sugar,main = "Box plot of sugar level", ylabel="Sugar in g")
-boxplot(USDA$Sugar,main = "Box plot of sugar level", ylab="Sugar in g")
-HighSodium = USDA$Sodium > mean(USDA$Sodium, na.rm=TRUE)
-str(HighSodium)
-str(HighSodium)
-HighSodium = as.numeric(USDA$Sodium > mean(USDA$Sodium, na.rm=TRUE))
-str(HighSodium)
-str(USDA$HighSodium)
-str(USDA)
-USDA$HighSodium = as.numeric(USDA$Sodium > mean(USDA$Sodium, na.rm=TRUE))
-str(USDA)
-USDA = read.csv("USDA.csv",stringsAsFactors=TRUE)
-USDA$HighSodium = as.numeric(USDA$Sodium > mean(USDA$Sodium, na.rm=TRUE))
-str(USDA)
+#Basic data analysis#
+#
 #Working directory#
 setwd("/Users/mohamednabassoua/Documents/Analytics/Analytics")#
 #Read dataset. Ensure 'char' converted to Factors by using "TRUE" for the variable below#
@@ -72,6 +52,33 @@ boxplot(USDA$Sugar,main = "Box plot of sugar level", ylab="Sugar in g")#
 #str(HighSodium)#
 #Add the new variable to our data frame#
 USDA$HighSodium = as.numeric(USDA$Sodium > mean(USDA$Sodium, na.rm=TRUE))#
+str(USDA)#
+#Add HighProtein#
+USDA$HighProtein = as.numeric(USDA$Protein > mean(USDA$Protein, na.rm=TRUE))
+USDA$HighProtein= as.numeric(USDA$Protein > mean(USDA$Protein, na.rm=TRUE))
+USDA$HighProtein=as.numeric(USDA$Protein>mean(USDA$Protein,na.rm=TRUE))
+USDA$HighFat=as.numeric(USDA$TotalFat>mean(USDA$TotalFat,na.rm=TRUE))
+USDA$HighSodium = as.numeric(USDA$Sodium > mean(USDA$Sodium, na.rm=TRUE))
 str(USDA)
+HighSodium = as.numeric(USDA$Sodium > mean(USDA$Sodium, na.rm=TRUE))
+HighFat = as.numeric(USDA$TotalFat > mean(USDA$TotalFat, na.rm=TRUE))
+HighProtein = as.numeric(USDA$Protein > mean(USDA$Protein, na.rm=TRUE))
+HighCarbs = as.numeric(USDA$Carbohydrate > mean(USDA$Carbohydrate, na.rm=TRUE))
+str(USDA)
+str(USDA)
+HighFat = as.numeric(USDA$TotalFat > mean(USDA$TotalFat, na.rm=TRUE))#
+HighProtein = as.numeric(USDA$Protein > mean(USDA$Protein, na.rm=TRUE))#
+HighCarbs = as.numeric(USDA$Carbohydrate > mean(USDA$Carbohydrate, na.rm=TRUE))#
+str(USDA)
+str(HighCarbs)
+USDA$HighSodium = as.numeric(USDA$Sodium > mean(USDA$Sodium, na.rm=TRUE))
+str(USDA)
+USDA$HighFat = as.numeric(USDA$TotalFat > mean(USDA$TotalFat, na.rm=TRUE))
 USDA$HighProtein = as.numeric(USDA$Protein > mean(USDA$Protein, na.rm=TRUE))
-USDA$HighProtein = as.numeric(USDA$Protein > mean(USDA$Protein, na.rm=TRUE))
+USDA$HighCarbs = as.numeric(USDA$Carbohydrate > mean(USDA$Carbohydrate, na.rm=TRUE))
+str(USDA)
+table(USDA$HighSodium)
+table(USDA$HighSodium, USDA$HighFat)
+tapply(USDA$Iron,USDA$HighProtein,mean,na.rm=TRUE)
+tapply(USDA$VitaminC,USDA$HighCarbs,max,na.rm=TRUE)
+tapply(USDA$VitaminC,USDA$HighCarbs,summary,na.rm=TRUE)
